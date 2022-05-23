@@ -88,11 +88,10 @@ void Input(string& S, ifstream& fin) {
 //Основная функция для работы программы
 void Run() {
     string S;
-    /*string way;
+    string way;
     cout << "Enter name of input file: ";
     getline(cin, way);
-    ifstream fin(way);*/ //Открытие файла для чтения текста
-    ifstream fin("input.txt"); //Открытие файла для чтения текста
+    ifstream fin(way); //Открытие файла для чтения текста
     ofstream fresult("result.txt"); //Открытие файла для записи отсортированных слов
     ofstream fanalysts("analysts.txt"); //Открытие файла для записи статистики
     Input(S, fin); //Вызов функции Input для считывания входного текста
