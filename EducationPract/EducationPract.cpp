@@ -4,7 +4,6 @@
 #include <sstream>
 #include <string>
 
-
 using namespace std;
 void FindWords(string S, vector<string>& Words) {
     istringstream stream(S);
@@ -27,9 +26,29 @@ void FindWords(string S, vector<string>& Words) {
     }
 }
 
-void PrintWords(vector<string>& Words, ofstream& result) {
+void Raschoska(vector<string>& Words) {
+    int step = Words.size() - 1;
+    for (step; step >= 1; step /= 1.2473309) {
+        for (int i = 0; i + step < Words.size(); i++) {
+            if (Words[i] < Words[i + step])
+                swap(Words[i], Words[i + step]);
+        }
+    }
+}
+
+void PrintWords(vector<string>& Words, ofstream& fresult) {
     for (int i = 0; i < Words.size(); i++) {
-        result << Words[i] << endl;
+        if (i != 0) {
+            if (Words[i][0] != Words[i - 1][0]) {
+                fresult << endl << Words[i] << " ";
+            }
+            else {
+                fresult << Words[i] << " ";
+            }
+        }
+        else {
+            fresult << Words[i] << " ";
+        }
     }
 }
 
@@ -47,13 +66,14 @@ void input(string& S, ifstream& fin) {
 void Run() {
     string S;
     ifstream fin("input.txt");
-    ofstream result("result.txt");
-    ofstream analysts("analysts.txt");
+    ofstream fresult("result.txt");
+    ofstream fanalysts("analysts.txt");
 
     input(S, fin);
     vector <string> Words;
     FindWords(S, Words);
-    PrintWords(Words, result);
+    Raschoska(Words);
+    PrintWords(Words, fresult);
 
 }
 
